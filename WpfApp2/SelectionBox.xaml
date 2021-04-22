@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="WpfApp2.SelectionBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="Style.Corner" TargetType="Control">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Margin" Value="-16"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="UseLayoutRounding" Value="True"></Setter>
+            <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Control">
+                        <Border>
+                            <Ellipse x:Name="InnerEllipse" Fill="{TemplateBinding Background}" Stroke="#0085CD"
+                                     Width="16" Height="16" StrokeThickness="1" SnapsToDevicePixels="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Style.RotateLine" TargetType="Control">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Width" Value="1"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Control">
+                        <Border Background="#0085CD"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="BoxRootGrid">
+        <!--背景及边框-->
+        <Rectangle x:Name="TranslateCover" Fill="#0085CD" Opacity="0.1" Visibility="Visible"></Rectangle>
+        <Rectangle x:Name="FrameLine" Stroke="#0085CD" StrokeThickness="1" Margin="-0.5" SnapsToDevicePixels="True"/>
+        <!--旋转-->
+        <Control x:Name="RotationLine" Style="{StaticResource Style.RotateLine}" VerticalAlignment="Top">
+            <Control.RenderTransform>
+                <TranslateTransform Y="-24"/>
+            </Control.RenderTransform>
+        </Control>
+        <Control x:Name="RotateCorner" Style="{StaticResource Style.Corner}"  Background="#7F6DBA44" VerticalAlignment="Top" HorizontalAlignment="Center" >
+            <Control.RenderTransform>
+                <TranslateTransform Y="-32"/>
+            </Control.RenderTransform>
+        </Control>
+        <!--缩放点-->
+        <Control x:Name="LeftTopCorner" Style="{StaticResource Style.Corner}"  Background="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Control x:Name="LeftBottomCorner" Style="{StaticResource Style.Corner}"  Background="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <Control x:Name="RightTopCorner" Style="{StaticResource Style.Corner}"  Background="White" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Control x:Name="RightBottomCorner" Style="{StaticResource Style.Corner}"  Background="White" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>
